@@ -56,6 +56,7 @@
     <Compile Include="Implementaions\UserBL.cs" />
     <Compile Include="Loggers\FileLoger.cs" />
     <Compile Include="Loggers\ILogger.cs" />
+    <Compile Include="Loggers\Log4netLocal.cs" />
     <Compile Include="Loggers\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

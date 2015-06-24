@@ -9,22 +9,22 @@ namespace MyStoryBLL.Loggers
 {
     public class FileLoger : ILogger, IDisposable
     {
-        private StreamWriter _logWriter;
+        private StreamWriter lgWriter;
 
         public FileLoger(string fileName)
         {
-            _logWriter = new StreamWriter(fileName);
+            lgWriter = new StreamWriter(fileName);
         }
 
         public void ProcessLog(string message)
         {
-            _logWriter.Write(message);
-            _logWriter.Flush();
+            lgWriter.Write(message);
+            lgWriter.Flush();
         }
 
         public void Dispose()
         {
-            _logWriter.Close();
+            lgWriter.Close();
         }
     }
 }

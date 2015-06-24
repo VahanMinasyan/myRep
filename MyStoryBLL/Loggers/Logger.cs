@@ -10,18 +10,14 @@ namespace MyStoryBLL.Loggers
     {
         private List<ILogger> Loggers;
         private static Logger _logger = null;
-
         public static Logger Instance
         {
             get
             {
-                if (_logger == null)
-                {
                     if (_logger == null)
                     {
                         _logger = new Logger();
                     }
-                }
                 return _logger;
             }
         }
@@ -31,14 +27,14 @@ namespace MyStoryBLL.Loggers
             Loggers = new List<ILogger>();
         }
 
-        public void RegisterObeserver(ILogger logger)
+        public void AddObeserver(ILogger logger)
         {
             if (!Loggers.Contains(logger))
             {
                 Loggers.Add(logger);
             }
         }
-        public void AddLogMessage(string message)
+        public void WriteLogMessage(string message)
         {
             foreach (ILogger logger in Loggers)
             {

@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 using MyStoryBLL.Loggers;
 using MyStoryDAL;
 using log4net;
-
 namespace MyStoryBLL
 {
     public abstract class CoreBL:BLFactory,IDisposable
     {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public CoreBL(SessionInfo sessionInfo)
             : base(sessionInfo){}
         public CoreBL()
@@ -22,8 +20,11 @@ namespace MyStoryBLL
         protected override void CreateBL(SessionInfo sessionInfo){
             this.dbContext = new MyStoryContext();
             this.sessionInfo = sessionInfo;
-            var fileLoger = new FileLoger("log.txt");
-            Logger.Instance.RegisterObeserver(fileLoger);
+            var fileLoger = new FileLoger("logFile.txt");
+            var log4NetLocal = new Log4netLocal();
+            //subscribes loggers to Observer
+            Logger.Instance.AddObeserver(log4NetLocal);
+            Logger.Instance.AddObeserver(fileLoger);
         }
         //initialize session with defeault values
         protected override void CreateBL(){ 
@@ -40,18 +41,17 @@ namespace MyStoryBLL
                     dbContext.SaveChanges();
                     dbContextTransaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     dbContextTransaction.Rollback();
-                    Logger.Instance.AddLogMessage(string.Format("{0}:{1}", DateTime.Now, "Error"));
+                    // logs info using all subscribed loggers
+                    Logger.Instance.WriteLogMessage(string.Format("{0}:{1}", DateTime.Now, ex.Message));
                 }
                 finally                
                 {
                 }
             }
         }
-        
-
         public void Dispose()
         {
             

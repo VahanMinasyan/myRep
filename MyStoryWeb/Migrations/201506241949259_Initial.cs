@@ -42,6 +42,15 @@ namespace MyStoryWeb.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Logs",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Exception = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.StoryGroups",
                 c => new
                     {
@@ -65,6 +74,7 @@ namespace MyStoryWeb.Migrations
             DropIndex("dbo.StoryGroups", new[] { "Group_Id" });
             DropIndex("dbo.StoryGroups", new[] { "Story_Id" });
             DropTable("dbo.StoryGroups");
+            DropTable("dbo.Logs");
             DropTable("dbo.Users");
             DropTable("dbo.Stories");
             DropTable("dbo.Groups");

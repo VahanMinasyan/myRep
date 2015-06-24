@@ -21,5 +21,6 @@ namespace MyStoryDAL
         public DbSet<User> User { get; set; }
         public DbSet<Group> Group { get; set; }
         public DbSet<Story> Story { get; set; }
+        public DbSet<Log> Log { get; set; }
     }
 }

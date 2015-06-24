@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModels\Group.cs" />
+    <Compile Include="DataModels\Log.cs" />
     <Compile Include="DataModels\SessionInfo.cs" />
     <Compile Include="DataModels\Story.cs" />
     <Compile Include="DataModels\User.cs" />

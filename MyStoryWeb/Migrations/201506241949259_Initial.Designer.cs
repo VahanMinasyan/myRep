@@ -13,7 +13,7 @@ namespace MyStoryWeb.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201506231024032_Initial"; }
+            get { return "201506241949259_Initial"; }
         }
         
         string IMigrationMetadata.Source
